@@ -1,0 +1,27 @@
+- hosts: localhost
+  remote_user: root
+  vars:
+    dns_zone: "extlab.io"
+    wildcard_name: '*.apps'
+    wildcard_ipv4: 192.168.122.220
+    network: 192.168.122
+    upstream_dns: 
+      - 192.168.122.1
+  vars_files:
+    - vars/main.yaml
+  tasks:
+    - name: "Define bind configuration"
+      import_role:
+        name: roles/ansible-role-bind
+      notify:
+        - restart_svc
+
+    - name: "Include firewall configurations"
+      include_tasks: tasks/firewall.yaml
+
+  handlers:  
+    - name: restart_svc
+      service:
+        name: named
+        state: restarted
+    

@@ -1,0 +1,44 @@
+---
+- name: "Test if firewalld is enabled"
+  command: systemctl is-enabled firewalld
+  register: firewalld_is_enabled
+  ignore_errors: true
+  failed_when: false
+
+- name: "Test if firewalld is enabled"
+  command: systemctl is-enabled iptables
+  register: iptables_is_enabled
+  ignore_errors: true
+  failed_when: false
+
+- name: "Firewalld is configured for DNS services"
+  firewalld:
+    service: dns
+    immediate: true
+    permanent: true
+    state: enabled
+  when: firewalld_is_enabled.rc == 0
+
+- name: "Configure port 53/tcp on iptables"
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 53
+    ctstate: NEW
+    jump: ACCEPT
+    comment: Accept new DNS tcp connections.
+  when: iptables_is_enabled.rc == 0
+
+- name: "Configure port 53/upd on iptables"
+  iptables:
+    chain: INPUT
+    protocol: udp
+    destination_port: 53
+    ctstate: NEW
+    jump: ACCEPT
+    comment: Accept new DNS udp connections.
+  when: iptables_is_enabled.rc == 0
+
+- name: "Save iptables configuration"
+  shell: iptables-save > /etc/sysconfig/iptables
+  when: iptables_is_enabled.rc == 0
