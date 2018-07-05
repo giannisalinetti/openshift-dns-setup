@@ -19,6 +19,33 @@ bind_zone_domains:
       - name: "{{ wildcard_name }}"
         ip: 
           - "{{ wildcard_ipv4 }}"
+      - name: rhocpm-01
+        ip:
+          - 192.168.122.210
+      - name: rhocpm-02
+        ip:
+          - 192.168.122.211
+      - name: rhocpm-03
+        ip:
+          - 192.168.122.212
+      - name: rhocpi-01
+        ip:
+          - 192.168.122.213
+      - name: rhocpi-02
+        ip:
+          - 192.168.122.214
+      - name: rhocpi-03
+        ip:
+          - 192.168.122.215
+      - name: rhocpn-01
+        ip:
+          - 192.168.122.216
+      - name: rhocpn-02
+        ip:
+          - 192.168.122.219
+      - name: rhocplb
+        ip:
+          - 192.168.122.220
     networks:
       - "{{ network }}"
 bind_forwarders: "{{ upstream_dns }}"
