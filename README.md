@@ -6,6 +6,14 @@ on the preferred zone.
 Its purpose is to provide a reliable resolution mechanism during OpenShift lab 
 installations.
 
+### Cloning:
+
+This repository has submodules, hence recursive cloning is necessary:
+
+```
+$ git clone --recursive https://github.com/giannisalinetti/openshift-dns-setup.git
+```
+
 ### Usage:
 
 ```
