@@ -1,0 +1,9 @@
+[submodule "ansible-role-bind"]
+	path = ansible-role-bind
+	url = https://github.com/bertvv/ansible-role-bind.git
+[submodule "roles/ansible-role-bin"]
+	path = roles/ansible-role-bin
+	url = https://github.com/bertvv/ansible-role-bind.git
+[submodule "roles/ansible-role-bind"]
+	path = roles/ansible-role-bind
+	url = https://github.com/bertvv/ansible-role-bind.git
