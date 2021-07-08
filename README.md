@@ -64,8 +64,8 @@ bind_listen_ipv4:
   - any
 ```
 
-For the sake of readability the most common parameters like wildcard address/nmae,
-forwareders, etc are defined in the main playbook file and recalled as internal
+For the sake of readability the most common parameters like wildcard address/name,
+forwarders, etc are defined in the main playbook file and recalled as internal
 variables in the vars file.
 
 ```
